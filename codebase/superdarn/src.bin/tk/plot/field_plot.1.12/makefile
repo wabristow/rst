@@ -11,9 +11,9 @@ SRC = hlpstr.h plot_time.c plot_time.h key.c key.h \
       plot_vec.c plot_vec.h geobeam.c geobeam.h make_grid.c make_grid.h \
       plot_cell.c plot_cell.h make_fov.c make_fov.h plot_time_label.c \
       plot_time_label.h plot_refvec.c plot_outline.c plot_outline.h \
-      plot_refvec.h plot_logo.c plot_logo.h
+      plot_refvec.h
 
-OBJS = plot_time_label.o plot_source.o plot_logo.o plot_time.o \
+OBJS = plot_time_label.o plot_source.o plot_time.o \
        plot_cell.o plot_outline.o plot_vec.o plot_refvec.o make_fov.o \
        make_grid.o key.o geobeam.o expr.o field_plot.o 
 

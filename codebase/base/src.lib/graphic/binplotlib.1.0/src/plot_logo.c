@@ -1,7 +1,8 @@
 /* plot_logo.c
-   =========== 
-   Author: R.J.Barnes and others
+   ===========
+   Author: R.J.Barnes
 */
+
 
 /*
    See license.txt
@@ -19,21 +20,20 @@
 
 #define CREDIT "JHU/APL.Software by R.J.Barnes"
 
-
-void plot_logo(struct Plot *Plot, float xoff,float yoff,float wdt,float hgt,
+void plot_logo(struct Plot *plot, float xoff,float yoff,float wdt,float hgt,
                unsigned int color,unsigned char mask, char *fontname,
                float fontsize, void *txtdata)
 {
   char txt[256];
   float txbox[3];
-  
+
   sprintf(txt,"SuperDARN");
   txtbox(fontname,fontsize,strlen(txt),txt,txbox,txtdata);
- 
-  PlotText(Plot,NULL,fontname,fontsize,xoff,yoff+hgt+txbox[1],
+
+  PlotText(plot,NULL,fontname,fontsize,xoff,yoff+hgt+txbox[1],
             strlen(txt),txt,color,mask,1);
 }
-  
+
 void plot_aacgm(struct Plot *plot, float xoff,float yoff,float wdt,float hgt,
               unsigned int color,unsigned char mask, char *fontname,
               float fontsize, void *txtdata, int old)
@@ -49,31 +49,31 @@ void plot_aacgm(struct Plot *plot, float xoff,float yoff,float wdt,float hgt,
             strlen(txt),txt,color,mask,1);
 }
 
-void plot_web(struct Plot *Plot, float xoff,float yoff,float wdt,float hgt,
+void plot_web(struct Plot *plot, float xoff,float yoff,float wdt,float hgt,
               unsigned int color,unsigned char mask, char *fontname,
               float fontsize, void *txtdata)
 {
   char txt[256];
   float txbox[3];
-   
+
   sprintf(txt,"http://superdarn.jhuapl.edu");
   txtbox(fontname,fontsize,strlen(txt),txt,txbox,txtdata);
- 
-  PlotText(Plot,NULL,fontname,fontsize,xoff+wdt-txbox[0],yoff+hgt+txbox[1],
+
+  PlotText(plot,NULL,fontname,fontsize,xoff+wdt-txbox[0],yoff+hgt+txbox[1],
             strlen(txt),txt,color,mask,1);
 }
-  
-void plot_credit(struct Plot *Plot, float xoff,float yoff,float wdt,float hgt,
+
+void plot_credit(struct Plot *plot, float xoff,float yoff,float wdt,float hgt,
                  unsigned int color,unsigned char mask, char *fontname,
                  float fontsize, void *txtdata)
 {
   char txt[256];
   float txbox[3];
- 
+
   sprintf(txt,CREDIT);
   txtbox(fontname,fontsize,strlen(txt),txt,txbox,txtdata);
- 
-  PlotText(Plot,NULL,fontname,fontsize,xoff,yoff+hgt+txbox[1],
+
+  PlotText(plot,NULL,fontname,fontsize,xoff,yoff+hgt+txbox[1],
             strlen(txt),txt,color,mask,1);
 }
-  
+
