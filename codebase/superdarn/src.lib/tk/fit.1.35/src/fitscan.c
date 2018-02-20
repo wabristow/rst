@@ -183,6 +183,7 @@ int FitReadRadarScan(int fid, int *state,
             break;
         }
 
+
         /* Read the next record into the prm and fit structures */
         if (chn==0) fstatus=FitRead(fid,prm,fit);
         else {
@@ -206,6 +207,15 @@ int FitReadRadarScan(int fid, int *state,
                       ((chn==1) && (prm->channel ==2)));
 
         }
+        do {
+
+
+                fstatus=FitRead(fid,prm,fit);
+                if (fstatus==-1) break;
+
+
+        } while (prm->nrang == 0);
+
 
         /* If end of file was reached by FitRead then set flg equal to 2 */
         if (fstatus==-1) flg=2;
