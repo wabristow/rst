@@ -187,6 +187,11 @@ char *label_pot(double val,double min,double max,void *data);
 int calc_degfree(struct CnvMapData *mptr,struct GridData *gptr);
 int calc_degfree_model(struct CnvMapData *mptr,struct GridData *gptr);
 
+int rst_opterr(char *txt) {
+  fprintf(stderr,"Option not recognized: %s\n",txt);
+  fprintf(stderr,"Please try: map_plot --help\n");
+  return(-1);
+}
 
 int main(int argc,char *argv[]) {
 
@@ -448,6 +453,8 @@ int main(int argc,char *argv[]) {
   char *fpath=NULL;
   char *postp=NULL;
 
+  int chisham=0;
+
   int farg;
 
   /* function pointers for file reading/writing (old and new) */
@@ -675,13 +682,20 @@ int main(int argc,char *argv[]) {
   OptionAdd(&opt,"frame",'x',&frmflg);
   OptionAdd(&opt,"over",'x',&ovrflg);
 
+  OptionAdd(&opt,"cmax",'d',&cmax);
   OptionAdd(&opt,"vmax",'d',&vmax);
   OptionAdd(&opt,"pmax",'d',&pmax);
   OptionAdd(&opt,"wmax",'d',&wmax);
 
   OptionAdd(&opt,"def",'x',&defflg);
 
-  arg=OptionProcess(1,argc,argv,&opt,NULL);  
+  OptionAdd(&opt,"chisham",'x',&chisham); /* Data mapped using Chisham virtual height model */
+
+  arg=OptionProcess(1,argc,argv,&opt,rst_opterr);
+
+  if (arg==-1) {
+    exit(-1);
+  }
 
   if (cfname !=NULL) { /* load the configuration file */
     do {
@@ -691,7 +705,12 @@ int main(int argc,char *argv[]) {
       cfname=NULL;
       optf=OptionProcessFile(fp);
       if (optf !=NULL) {
-        farg=OptionProcess(0,optf->argc,optf->argv,&opt,NULL);
+        farg=OptionProcess(0,optf->argc,optf->argv,&opt,rst_opterr);
+        if (farg==-1) {
+          fclose(fp);
+          OptionFreeFile(optf);
+          exit(-1);
+        }
         OptionFreeFile(optf);
        }   
        fclose(fp);
@@ -792,7 +811,7 @@ int main(int argc,char *argv[]) {
   else clip=MapSquareClip();
 
   if (lat>90) lat=90*rcmap->hemisphere;
-  if (fovflg || ffovflg) fov=make_fov(rgrid->st_time,network); 
+  if (fovflg || ffovflg) fov=make_fov(rgrid->st_time,network,chisham); 
   if ((fovflg || ffovflg) && !magflg) {
     if (old_aacgm) MapModify(fov,AACGMtransform,&flg);
     else           MapModify(fov,AACGM_v2_transform,&flg);
