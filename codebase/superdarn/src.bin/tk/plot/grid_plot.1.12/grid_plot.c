@@ -66,6 +66,8 @@
 #include "sza.h"
 #include "szamap.h"
 
+#include "scandata.h"
+#include "geobeam.h"
 #include "plot_cell.h"
 #include "plot_raw.h"
 #include "plot_logo.h"

@@ -99,6 +99,7 @@
 #include "sza.h"
 #include "szamap.h"
 
+#include "griddata.h"
 #include "geobeam.h"
 #include "plot_cell.h"
 #include "plot_vec.h"
