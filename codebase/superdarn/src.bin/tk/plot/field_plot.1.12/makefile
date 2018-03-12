@@ -9,11 +9,11 @@ INCLUDE = -I$(IPATH)/base -I$(IPATH)/general -I$(IPATH)/analysis \
 SRC = hlpstr.h plot_time.c plot_time.h key.c key.h \
       expr.c expr.h field_plot.c errstr.h \
       plot_vec.c plot_vec.h make_grid.c make_grid.h \
-      make_fov.c make_fov.h plot_time_label.c \
-      plot_time_label.h plot_refvec.c plot_outline.c plot_outline.h \
+      make_fov.c make_fov.h \
+      plot_refvec.c plot_outline.c plot_outline.h \
       plot_refvec.h
 
-OBJS = plot_time_label.o plot_time.o \
+OBJS = plot_time.o \
        plot_outline.o plot_vec.o plot_refvec.o make_fov.o \
        make_grid.o key.o expr.o field_plot.o 
 

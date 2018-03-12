@@ -7,10 +7,9 @@ INCLUDE = -I$(IPATH)/base -I$(IPATH)/general -I$(IPATH)/analysis \
           -I$(IPATH)/imagery -I$(IPATH)/superdarn 
 
 SRC = hlpstr.h fov_plot.c errstr.h clip.c clip.h \
-      make_grid.c make_grid.h make_fov.c make_fov.h plot_time_label.c \
-      plot_time_label.h
+      make_grid.c make_grid.h make_fov.c make_fov.h
 
-OBJS = plot_time_label.o make_grid.o clip.o make_fov.o fov_plot.o
+OBJS = make_grid.o clip.o make_fov.o fov_plot.o
 
 DSTPATH = $(BINPATH)
 OUTPUT = fov_plot

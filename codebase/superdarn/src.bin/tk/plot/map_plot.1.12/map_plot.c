@@ -68,6 +68,8 @@
 #include "szamap.h"
 
 #include "plot_fit.h"
+#include "scandata.h"
+#include "geobeam.h"
 #include "plot_cell.h"
 #include "plot_raw.h"
 #include "plot_model.h"
