@@ -86,7 +86,7 @@
 #include "hlpstr.h"
 #include "errstr.h"
 
-#include "graphics.h"
+#include "text_box.h"
 #include "key.h"
 
 #include "version.h"
