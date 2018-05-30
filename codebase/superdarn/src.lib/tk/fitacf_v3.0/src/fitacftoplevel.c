@@ -27,6 +27,7 @@ July 2015
 #include "fitacftoplevel.h"
 #include "leastsquares.h"
 #include "determinations.h"
+#include "postprocessing.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -248,7 +249,7 @@ void Copy_Fitting_Prms(struct RadarSite *radar_site, struct RadarParm *radar_prm
 
 /**
 Runs the full ACF/XCF fitting procedure and adds determinations to the FitData structure*/
-int Fitacf(FITPRMS *fit_prms, struct FitData *fit_data) {
+int Fitacf(FITPRMS *fit_prms, struct FitData *fit_data, unsigned char streak) {
 
   llist ranges, lags;
   double noise_pwr;
@@ -319,9 +320,11 @@ int Fitacf(FITPRMS *fit_prms, struct FitData *fit_data) {
 
   /*Now the fits are completed, we can make our final determinations from those fits*/
   ACF_Determinations(ranges, fit_prms, fit_data, noise_pwr);
-
+  if( streak != 0 )
+  {
+      vertical_streak_remove(fit_prms, fit_data, fit_data->rng);
+  }
   llist_destroy(lags,TRUE,free);
   llist_destroy(ranges,TRUE,free_range_node);
-
   return 0;
 }

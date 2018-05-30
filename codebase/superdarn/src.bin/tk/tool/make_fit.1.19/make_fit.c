@@ -71,6 +71,8 @@ int main(int argc,char *argv[]) {
 
   unsigned char vb=0;
 
+  unsigned char streak=0;
+
   FILE *fp=NULL;
   struct OldRawFp *rawfp=NULL;
   FILE *fitfp=NULL;
@@ -100,6 +102,8 @@ int main(int argc,char *argv[]) {
   OptionAdd(&opt,"vb",'x',&vb);
 
   OptionAdd(&opt,"old",'x',&old);
+
+  OptionAdd(&opt,"streak-removal",'x',&streak);
 
   OptionAdd(&opt,"fitacf-version",'t',&fitacf_version_s);
 
@@ -239,7 +243,7 @@ int main(int argc,char *argv[]) {
       /* load the data into the FitACF structure.                  */
       if(fit_prms != NULL) {
     	  Copy_Fitting_Prms(site,prm,raw,fit_prms);
-    	  Fitacf(fit_prms,fit);
+    	  Fitacf(fit_prms,fit,streak);
         /*FitacfFree(fit_prms);*/
     	}
       else {
@@ -312,7 +316,7 @@ int main(int argc,char *argv[]) {
         /* load the data into the FitACF structure.                  */
         if(fit_prms != NULL) {
           Copy_Fitting_Prms(site,prm,raw,fit_prms);
-          Fitacf(fit_prms,fit);
+          Fitacf(fit_prms,fit,streak);
           /*FitacfFree(fit_prms);*/
         }
         else {

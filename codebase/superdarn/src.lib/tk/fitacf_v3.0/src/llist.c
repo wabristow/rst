@@ -428,6 +428,7 @@ int llist_delete_node ( llist list, llist_node node,
     return LLIST_ERROR;
 }
 
+/* map style function: applies the node_func function to each range record */
 int llist_for_each ( llist list, node_func func )
 {
     _list_node *iterator;

@@ -481,12 +481,11 @@ void calculate_alpha_at_lags(llist_node lag, llist_node range, double* lag_0_pwr
 This function finds the bad samples that are blacked out by TX overlap
 */
 void mark_bad_samples(FITPRMS *fit_prms, llist bad_samples){
-	int i,j, sample;
+	int j, sample;
 	long ts, t1=0, t2=0;
 	int *bad_sample, *pulse_us;
 	int offset, channel;
 	llist pulses_in_us, pulses_stereo;
-	i = -1;
 	ts = (long) fit_prms->lagfr;
 	offset = fit_prms->offset;
 	channel = fit_prms->channel;
@@ -716,7 +715,6 @@ double ACF_cutoff_pwr(FITPRMS *fit_prms){
 Removes ACFs entirely from analysis if they are deemed to be pure noise
 */
 void Filter_Bad_ACFs(FITPRMS *fit_prms, llist ranges, double noise_pwr){
-	int i=0;
 	RANGENODE* range_node = NULL;
 	PWRNODE* pwr_node = NULL;
 	double tmp_pwr = 0.0;
@@ -995,7 +993,6 @@ the phase for fitting.
 void ACF_Phase_Unwrap(llist_node range, FITPRMS* fit_prms){
 	RANGENODE* range_node;
 	PHASENODE* phase_curr;
-	PHASENODE* phase_prev;
 	PHASENODE* local_copy;
 
 	double d_phi,sigma_bar,d_tau;
