@@ -5,10 +5,10 @@ include $(MAKECFG).$(SYSTEM)
 
 INCLUDE = -I$(IPATH)/base -I$(IPATH)/general -I$(IPATH)/superdarn
 
-SRC = time_plot.c fit.c oldfit.c smr.c cfit.c expr.c tplot.c key.c \
-      cfit.h errstr.h expr.h fit.h hlpstr.h key.h oldfit.h smr.h tplot.h
+SRC = time_plot.c fit.c oldfit.c smr.c cfit.c expr.c tplot.c \
+      cfit.h errstr.h expr.h fit.h hlpstr.h oldfit.h smr.h tplot.h
 
-OBJS = time_plot.o fit.o oldfit.o smr.o cfit.o expr.o tplot.o key.o
+OBJS = time_plot.o fit.o oldfit.o smr.o cfit.o expr.o tplot.o
 
 DSTPATH = $(BINPATH)
 OUTPUT = time_plot
